@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -18,8 +19,7 @@ import java.util.Date;
 public class Client implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -29,6 +29,11 @@ public class Client implements Serializable {
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
+
+    @PrePersist
+    public void addCreateAt(){
+        createAt = new Date();
+    }
 
     public Long getId() {
         return id;
