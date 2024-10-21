@@ -24,6 +24,7 @@ public class Client implements Serializable {
 
     private String name;
     private String lastname;
+    private String email;
 
     @Column(name = "create_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -63,4 +64,12 @@ public class Client implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
