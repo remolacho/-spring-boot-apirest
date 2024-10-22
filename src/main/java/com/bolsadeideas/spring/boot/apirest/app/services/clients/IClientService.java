@@ -1,6 +1,6 @@
-package com.bolsadeideas.spring.boot.apirest.models.services;
+package com.bolsadeideas.spring.boot.apirest.app.services.clients;
 
-import com.bolsadeideas.spring.boot.apirest.models.entity.Client;
+import com.bolsadeideas.spring.boot.apirest.domain.models.entity.Client;
 
 import java.util.List;
 

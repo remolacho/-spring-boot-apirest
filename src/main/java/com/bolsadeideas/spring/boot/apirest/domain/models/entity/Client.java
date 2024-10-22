@@ -1,4 +1,4 @@
-package com.bolsadeideas.spring.boot.apirest.models.entity;
+package com.bolsadeideas.spring.boot.apirest.domain.models.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +17,8 @@ import java.util.Date;
 @Entity
 @Table(name="clients" )
 public class Client implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -66,9 +68,6 @@ public class Client implements Serializable {
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
-
-    @Serial
-    private static final long serialVersionUID = 1L;
 
     public String getEmail() {
         return email;
