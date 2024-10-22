@@ -1,6 +1,7 @@
-package com.bolsadeideas.spring.boot.apirest.models.services;
-import com.bolsadeideas.spring.boot.apirest.models.dao.IClientDao;
-import com.bolsadeideas.spring.boot.apirest.models.entity.Client;
+package com.bolsadeideas.spring.boot.apirest.app.services.clients;
+import com.bolsadeideas.spring.boot.apirest.app.exceptions.RecordNotFoundException;
+import com.bolsadeideas.spring.boot.apirest.domain.models.dao.IClientDao;
+import com.bolsadeideas.spring.boot.apirest.domain.models.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +33,7 @@ public class ClientService implements IClientService {
     @Override
     @Transactional(readOnly = true)
     public Client findById(long id) {
-        return clientDao.findById(id).orElse(null);
+        return clientDao.findById(id).orElseThrow(() -> new RecordNotFoundException("Client Not Found" ));
     }
 
     @Override

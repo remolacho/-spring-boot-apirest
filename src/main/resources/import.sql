@@ -11,3 +11,5 @@ INSERT INTO clients (name, lastname, email, create_at) VALUES('Dr. James', 'Gosl
 INSERT INTO clients (name, lastname, email, create_at) VALUES('Magma', 'Lee', 'magma.lee@gmail.com', '2018-03-04');
 INSERT INTO clients (name, lastname, email, create_at) VALUES('Tornado', 'Roe', 'tornado.roe@gmail.com', '2018-03-05');
 INSERT INTO clients (name, lastname, email, create_at) VALUES('Jade', 'Doe', 'jane.doe@gmail.com', '2018-03-06');
+INSERT INTO roles (name, code, create_at) VALUES('Admin', 'admin', '2018-03-06');
+INSERT INTO roles (name, code, create_at) VALUES('User', 'user', '2018-03-06');

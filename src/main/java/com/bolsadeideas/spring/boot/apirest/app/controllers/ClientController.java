@@ -1,7 +1,8 @@
-package com.bolsadeideas.spring.boot.apirest.controllers;
+package com.bolsadeideas.spring.boot.apirest.app.controllers;
 
-import com.bolsadeideas.spring.boot.apirest.models.entity.Client;
-import com.bolsadeideas.spring.boot.apirest.models.services.IClientService;
+import com.bolsadeideas.spring.boot.apirest.app.policies.clients.PolicyClient;
+import com.bolsadeideas.spring.boot.apirest.domain.models.entity.Client;
+import com.bolsadeideas.spring.boot.apirest.app.services.clients.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,12 +21,12 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api/v1")
-public class ClientController {
-
+public class ClientController extends ApplicationController{
     private final IClientService clientService;
 
     @Autowired
     public ClientController(IClientService clientService) {
+        super();
         this.clientService = clientService;
     }
 
@@ -42,18 +43,28 @@ public class ClientController {
     @PostMapping("/clients")
     @ResponseStatus(HttpStatus.CREATED)
     public Client create(@RequestBody Client client){
+        policy().hasAccess();
+
         return clientService.save(client);
     }
 
     @PutMapping("/clients/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Client update(@RequestBody Client client, @PathVariable Long id){
+        policy().hasAccess();
+
         return clientService.update(client, id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/clients/{id}")
     public void delete(@PathVariable Long id){
+        policy().hasAccess();
+
         clientService.delete(id);
+    }
+
+    private PolicyClient policy() {
+        return new PolicyClient(currentUser);
     }
 }
